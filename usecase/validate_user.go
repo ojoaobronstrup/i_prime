@@ -5,17 +5,17 @@ import (
 	"github.com/ojoaobronstrup/i_prime/repository"
 )
 
-type UserUsecase struct {
-	userRepository repository.IRepository
+type ValidateUserUsecase struct {
+	userRepository *repository.ValidateUserRepository
 }
 
-func NewUserUsecase(repo repository.IRepository) *UserUsecase {
-	return &UserUsecase{
+func NewValidateUserUsecase(repo *repository.ValidateUserRepository) *ValidateUserUsecase {
+	return &ValidateUserUsecase{
 		userRepository: repo,
 	}
 }
 
-func (uc *UserUsecase) FindUserByUsername(user entity.User) (bool, error) {
+func (uc *ValidateUserUsecase) FindUserByUsername(user entity.User) (bool, error) {
 	_, err := uc.userRepository.FindUserByUsername(user)
 	if err != nil {
 		return false, err

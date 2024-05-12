@@ -10,7 +10,7 @@ import (
 )
 
 func InitDatabase() (*sql.DB, error) {
-	if err := godotenv.Load("C:\\Users\\joaog\\DEV\\projetos\\i_prime\\.env"); err != nil {
+	if err := godotenv.Load("C:/Users/joaog/DEV/i_prime/.env"); err != nil {
 		slog.Error("error on load the env file: ", err)
 		return nil, err
 	}

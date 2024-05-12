@@ -19,8 +19,8 @@ func ValidateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	userRepo := repository.NewUserRepository(db)
-	userUsecase := usecase.NewUserUsecase(userRepo)
+	userRepo := repository.NewValidateUserRepository(db)
+	userUsecase := usecase.NewValidateUserUsecase(userRepo)
 
 	body, err := io.ReadAll(r.Body)
 	if err != nil {
