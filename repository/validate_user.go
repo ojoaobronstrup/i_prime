@@ -8,17 +8,17 @@ import (
 	"github.com/ojoaobronstrup/i_prime/entity"
 )
 
-type ValidateUserRepository struct {
+type validateUserRepository struct {
 	db *sql.DB
 }
 
-func NewValidateUserRepository(db *sql.DB) *ValidateUserRepository {
-	return &ValidateUserRepository{
+func NewValidateUserRepository(db *sql.DB) *validateUserRepository {
+	return &validateUserRepository{
 		db: db,
 	}
 }
 
-func (ur *ValidateUserRepository) FindUserByUsername(user entity.User) (bool, error) {
+func (ur *validateUserRepository) FindUserByUsername(user entity.User) (bool, error) {
 	var foundUsername string
 	err := ur.db.QueryRow("SELECT username FROM users WHERE username = ?", user.Username).Scan(&foundUsername)
 	if err != nil {
@@ -33,4 +33,8 @@ func (ur *ValidateUserRepository) FindUserByUsername(user entity.User) (bool, er
 	log.Println(user.Username)
 
 	return true, nil
+}
+
+type IValidateUserRepository interface {
+	FindUserByUsername(user entity.User) (bool, error)
 }

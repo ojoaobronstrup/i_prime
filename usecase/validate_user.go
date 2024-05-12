@@ -6,10 +6,10 @@ import (
 )
 
 type ValidateUserUsecase struct {
-	userRepository *repository.ValidateUserRepository
+	userRepository repository.IValidateUserRepository
 }
 
-func NewValidateUserUsecase(repo *repository.ValidateUserRepository) *ValidateUserUsecase {
+func NewValidateUserUsecase(repo repository.IValidateUserRepository) *ValidateUserUsecase {
 	return &ValidateUserUsecase{
 		userRepository: repo,
 	}
