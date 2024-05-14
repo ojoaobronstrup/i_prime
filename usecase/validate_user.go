@@ -15,10 +15,10 @@ func NewValidateUserUsecase(repo repository.IValidateUserRepository) *ValidateUs
 	}
 }
 
-func (uc *ValidateUserUsecase) FindUserByUsername(user entity.User) (bool, error) {
-	_, err := uc.userRepository.FindUserByUsername(user)
+func (uc *ValidateUserUsecase) GenerateToken(user entity.User) (string, error) {
+	_, err := uc.userRepository.GenerateToken(user)
 	if err != nil {
-		return false, err
+		return "user not found", err
 	}
-	return true, nil
+	return user.Username, nil
 }

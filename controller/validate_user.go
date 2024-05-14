@@ -3,7 +3,6 @@ package controller
 import (
 	"encoding/json"
 	"io"
-	"log"
 	"log/slog"
 	"net/http"
 
@@ -34,17 +33,12 @@ func ValidateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	find, err := userUsecase.FindUserByUsername(user)
+	_, err = userUsecase.GenerateToken(user)
 	if err != nil {
 		slog.Error("user not found: ", err)
 		w.WriteHeader(http.StatusNotFound)
 		return
 	}
 
-	log.Println(find)
-
-	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte("sucesso"))
-
 }
